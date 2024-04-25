@@ -34,7 +34,7 @@ class SpecialEvent {
             int current_attending = days[day];
             if (current_attending == attending) {
                 System.out.println("Day" + (day+1) + " is an optimal day.");
-                counter += 1
+                counter += 1;
             }
         }
         sc.close();
