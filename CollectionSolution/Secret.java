@@ -3,43 +3,39 @@ import java.util.*;
 class Secret {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        /* Solution Planning
-        1. Read inputs (Recommend String)
-
-        2. Split into parts
-            Part 1: Digit 1 and Digit 2
-
-            Part 2: Remaining 3 digits = number of steps
-
-        3. Determine direction
-            if part 1 is odd > left
-            if part 1 is even > right
-            if part 1 is 0 > previous direction 
-        */
-        String digits = "";
+        // Secret Instructions
+        // Step 1: Repeatedly read inputs + initialize directions
+        String input = "";
         String direction = "";
-        while (digits.equals("99999") == false) {
-            // Step 1: Get input
-            System.out.println("Enter 5 digit instruction:");
-            digits = sc.nextLine(); // we have a string
-            if (digits.equals("99999") == false) {
-                //int d1 = Integer.parseInt(digits.charAt(0));
-                int d1 = Character.getNumericValue(digits.charAt(0));
-                //int d2 = Integer.parseInt(digits.charAt(1));
-                int d2 = Character.getNumericValue(digits.charAt(1));
+        while (input.equals("99999") == false) {
+            System.out.println("Instructions")
+            input = sc.nextLine();
 
-                int last3 = Integer.parseInt(digits.substring(2, digits.length()));
-                if (d1+d2 == 0) {
-                    System.out.println(direction + " " + last3);
-                } else if ((d1+d2) % 2 == 0) {
+            if (input.equals("99999") == false) {
+                // Step 2: Separate into digits
+                String d1 = "" + input.charAt(0);
+                int digit1 = Integer.parseInt(d1);
+
+                String d2 = "" + input.charAt(1);
+                int digit2 = Integer.parseInt(d2);
+
+                // Step 3: Obtain Last 3 Digits
+                String last3 = input.substring(2, input.length());
+                int steps = Integer.parseInt(last3);
+
+                // Step 4: Add digit1 and digit2 for left/right
+                if (digit1 + digit2 == 0) {
+                    System.out.println(direction + " " + steps);
+                } else if ((digit1 + digit2) % 2 == 0) {
                     direction = "right";
-                    System.out.println(direction + " " + last3);
+                    System.out.println(direction + " " + steps);
                 } else {
                     direction = "left";
-                    System.out.println(direction + " " + last3);
+                    System.out.println(direction + " " + steps);
                 }
             }
         }
+
         sc.close();
     }
 }
